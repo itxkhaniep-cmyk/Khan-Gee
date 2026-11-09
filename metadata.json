@@ -1,0 +1,8 @@
+{
+  "name": "Remix PySeekho - Python Seekhein \u0026 Practice Karein",
+  "description": "Python seekhein asaan Roman Urdu aur English mein. Interactive lessons, live Python code runner, automated test practice challenges, quizzes, aur mukammal progress save.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

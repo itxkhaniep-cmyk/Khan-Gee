@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Registered learner account profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique user ID (auth uid)" },
+        "email": { "type": "string", "description": "User email address" },
+        "displayName": { "type": "string", "description": "Display name of the learner" },
+        "photoURL": { "type": "string", "description": "Profile picture URL" },
+        "createdAt": { "type": "string", "description": "Account creation timestamp" },
+        "updatedAt": { "type": "string", "description": "Last update timestamp" }
+      },
+      "required": ["id", "email", "createdAt"]
+    },
+    "UserProgress": {
+      "title": "UserProgress",
+      "description": "Cloud persistent learning progress, XP, completed lessons, and exams",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Auth UID owning this progress" },
+        "totalXp": { "type": "number", "description": "Total XP earned" },
+        "completedLessonIds": { "type": "array", "description": "List of completed lesson IDs" },
+        "completedChallengeIds": { "type": "array", "description": "List of completed challenge IDs" },
+        "completedQuizIds": { "type": "array", "description": "List of completed quiz IDs" },
+        "examScores": { "type": "object", "description": "Map of exam question ID to marks" },
+        "currentStreak": { "type": "number", "description": "Daily streak counter" },
+        "lastActiveDate": { "type": "string", "description": "Date of last activity" },
+        "updatedAt": { "type": "string", "description": "Last sync timestamp" }
+      },
+      "required": ["userId", "totalXp", "completedLessonIds"]
+    },
+    "SavedCode": {
+      "title": "SavedCode",
+      "description": "User saved Python playground code files and automation scripts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Document ID" },
+        "userId": { "type": "string", "description": "Owner user UID" },
+        "title": { "type": "string", "description": "Code script title" },
+        "code": { "type": "string", "description": "Python code content" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" },
+        "updatedAt": { "type": "string", "description": "Last modified timestamp" }
+      },
+      "required": ["id", "userId", "title", "code", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile collection indexed by auth UID"
+    },
+    "/userProgress/{userId}": {
+      "schema": "UserProgress",
+      "description": "User learning progress, XP and exam completion record"
+    },
+    "/savedCodes/{codeId}": {
+      "schema": "SavedCode",
+      "description": "Saved Python playground scripts"
+    }
+  }
+}
